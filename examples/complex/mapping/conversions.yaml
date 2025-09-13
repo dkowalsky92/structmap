@@ -1,0 +1,26 @@
+conversions:
+  - source_type: int
+    dest_type: "*int"
+    conversion:
+      tmpl: "{{ .Dest }} = &{{ .Source }}"
+    reverse_conversion:
+      tmpl: "{{ .Dest }} = *{{ .Source }}"
+
+  - source_type: string
+    dest_type: "*string"
+    conversion:
+      tmpl: "{{ .Dest }} = &{{ .Source }}"
+    reverse_conversion:
+      tmpl: "{{ .Dest }} = *{{ .Source }}"
+
+  - source_type: "{{ .Import0 }}.UUID"
+    dest_type: string
+    conversion:
+      tmpl: "{{ .Dest }} = {{ .Source }}.String()"
+    reverse_conversion:
+      error: true
+      tmpl: "{{ .Dest }}, {{ .Error }} = {{ .Import0 }}.Parse({{ .Source }})"
+    imports:
+      - "github.com/google/uuid"
+
+

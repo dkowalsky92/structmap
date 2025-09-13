@@ -1,0 +1,12 @@
+out_package_name: main
+mappings:
+  - from:
+      type: "{{ .Import0 }}.User"
+      imports:
+        - "github.com/dkowalsky92/structmap/examples/simple/models1"
+    to:
+      type: "{{ .Import0 }}.UserDTO"
+      imports:
+        - "github.com/dkowalsky92/structmap/examples/simple/models2"
+
+

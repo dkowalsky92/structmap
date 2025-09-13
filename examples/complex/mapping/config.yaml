@@ -1,0 +1,40 @@
+out_package_name: mapping
+out_file_name: mapping.gen.go
+out_file_path: .generated
+debug: true
+mappings:
+  - from:
+      type: "{{ .Import0 }}.User"
+      imports:
+        - "github.com/dkowalsky92/structmap/examples/complex/models1"
+    to:
+      type: "{{ .Import0 }}.UserDTO"
+      imports:
+        - "github.com/dkowalsky92/structmap/examples/complex/models2"
+    func_additional_args:
+      - name: about
+        type: "*string"
+        dest_field: "About"
+    custom_field_mappings:
+      - source_field: "FirstName"
+        dest_field: "Name"
+      - source_tag: "user_height"
+        dest_tag: "user_dto_height"
+        tag: "structmap"
+
+  - from:
+      type: "{{ .Import0 }}.UserDTO"
+      imports:
+        - "github.com/dkowalsky92/structmap/examples/complex/models2"
+    to:
+      type: "{{ .Import0 }}.User"
+      imports:
+        - "github.com/dkowalsky92/structmap/examples/complex/models1"
+    custom_field_mappings:
+      - source_field: "Name"
+        dest_field: "FirstName"
+      - source_tag: "user_dto_height"
+        dest_tag: "user_height"
+        tag: "structmap"
+
+
